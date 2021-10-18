@@ -1,0 +1,421 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API - Bureau de Credito DB",
+    "description": "Esta API tem como objetivo a busca de informações em diferentes tabelas,para realização do teste técnico proposto pela empresa em questão.",
+    "termsOfService": "/terms",
+    "contact": {
+      "email": "fabiohigoralm2@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001",
+      "description": "Api de test"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "Login usuario",
+        "description": "Essa é rota é responsavel pelo login de todos os tipos de usuarios,a requisição retorna um token que sera necessario para fazer todas as requisiçoes abaixo,deve se atentar que cada tipo de usuario tera permissoes diferentes,sendo admin ou user.",
+        "tags": ["Login"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              },
+              "examples": {
+                "LoginUser": {
+                  "value": {
+                    "email": "lojacentra@maracenter.com",
+                    "password": "123456"
+                  }
+                },
+                "LoginAdmin": {
+                  "value": {
+                    "email": "admin@admin.com",
+                    "password": "admin12345"
+                  }
+                },
+                "LoginInvalido": {
+                  "value": {
+                    "email": "qualquer@email.com",
+                    "password": "senhaErrada"
+                  }
+                },
+                "LoginSemInformacoes": {
+                  "value": {
+                    "email": "qualquer@email.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK - Login success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - Email or password does not exist"
+          },
+          "400": {
+            "description": "Bad Request - Email or password is required"
+          }
+        }
+      }
+    },
+    "/consulta/all": {
+      "get": {
+        "description": "Rota disponivel apenas para administradores,antes de fazer a requisição cliclar no cadeado no canto superior direito e inserir o token da requisição de POST/LOGIN,caso usuario sem permissão tente acessa-lá a requisição retorna status 401",
+        "summary": "Busca todos as bases",
+        "tags": ["admin"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK - all bases returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resultAll"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Token not found , Expired or invalid token"
+          }
+        }
+      }
+    },
+    "/consulta/basea/{cpf}": {
+      "get": {
+        "description": "Antes de fazer a requisição cliclar no cadeado no canto superior direito e inserir o token da requisição de POST/LOGIN,rota disponivel para todos os tipos de usuarios.",
+        "summary": "Base A",
+        "tags": ["admin/user"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cpf",
+            "description": "Insira o cpf",
+            "schema": {
+              "type": "integer",
+              "require": true,
+              "default": 12345678910
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized - Token not found , Expired or invalid token"
+          },
+          "404": {
+            "description": "Not Found - Cpf does not exist in database"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resultA"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consulta/baseb/{cpf}": {
+      "get": {
+        "summary": "Base B",
+        "description": "Antes de fazer a requisição cliclar no cadeado no canto superior direito e inserir o token da requisição de POST/LOGIN,rota disponivel para todos os tipos de usuarios.",
+        "tags": ["admin/user"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cpf",
+            "description": "Insira o cpf",
+            "schema": {
+              "type": "integer",
+              "require": true,
+              "default": 12345678910
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized - Token not found , Expired or invalid token"
+          },
+          "404": {
+            "description": "Not Found - Cpf does not exist in database"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resultB"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consulta/baseC/{cpf}": {
+      "get": {
+        "description": "Antes de fazer a requisição cliclar no cadeado no canto superior direito e inserir o token da requisição de POST/LOGIN,rota disponivel para todos os tipos de usuarios.",
+        "summary": "Base C",
+        "tags": ["admin/user"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cpf",
+            "description": "Insira o cpf",
+            "schema": {
+              "type": "integer",
+              "require": true,
+              "default": 12345678910
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized - Token not found , Expired or invalid token"
+          },
+          "404": {
+            "description": "Not Found - Cpf does not exist in database"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resultC"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Token": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "resultAll": {
+        "type": "object",
+        "properties": {
+          "resultA": {
+            "$ref": "#/components/schemas/resultA"
+          },
+          "resultB": {
+            "$ref": "#/components/schemas/resultB"
+          },
+          "resultC": {
+            "$ref": "#/components/schemas/resultB"
+          }
+        }
+      },
+      "endereco": {
+        "type": "array",
+        "items": {
+          "properties": {
+            "rua": {
+              "type": "string"
+            },
+            "numero": {
+              "type": "number"
+            },
+            "bairro": {
+              "type": "string"
+            },
+            "cidade": {
+              "type": "string"
+            },
+            "estado": {
+              "type": "string"
+            },
+            "cep": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "dividas": {
+        "type": "array",
+        "items": {
+          "properties": {
+            "descricao": {
+              "type": "string"
+            },
+            "valor": {
+              "type": "number"
+            },
+            "anoDivida": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "listaBens": {
+        "type": "array",
+        "items": {
+          "properties": {
+            "descricaoPatrimonio": {
+              "type": "string"
+            },
+            "valorMedio": {
+              "type": "number"
+            },
+            "apartirDoAno": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "fonteDeRenda": {
+        "type": "array",
+        "items": {
+          "properties": {
+            "descricao": {
+              "type": "string"
+            },
+            "valorMedioRenda": {
+              "type": "number"
+            },
+            "primeiroAnoRenda": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "movimentacao": {
+        "type": "object",
+        "properties": {
+          "descricaoCompra": {
+            "type": "string"
+          },
+          "valorCompra": {
+            "type": "number"
+          }
+        }
+      },
+      "resultA": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "nome": {
+              "type": "string"
+            },
+            "cpf": {
+              "type": "string"
+            },
+            "endereco": {
+              "$ref": "#/components/schemas/endereco"
+            },
+            "dividas": {
+              "$ref": "#/components/schemas/dividas"
+            }
+          }
+        }
+      },
+      "resultB": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "idade": {
+              "type": "number"
+            },
+            "listaBens": {
+              "$ref": "#/components/schemas/listaBens"
+            },
+            "fonteDeRenda": {
+              "$ref": "#/components/schemas/fonteDeRenda"
+            }
+          }
+        }
+      },
+      "resultC": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "ultimaConsultaCpf": {
+              "type": "string"
+            },
+            "movimentacao": {
+              "$ref": "#/components/schemas/movimentacao"
+            },
+            "ultimaCompraCpf": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
