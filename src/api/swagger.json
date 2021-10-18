@@ -19,7 +19,7 @@
     "/login": {
       "post": {
         "summary": "Login usuario",
-        "description": "Essa é rota é responsavel pelo login de todos os tipos de usuarios,a requisição retorna um token que sera necessario para fazer todas as requisiçoes abaixo,deve se atentar que cada tipo de usuario tera permissoes diferentes,sendo admin ou user.",
+        "description": "Essa é rota é responsável pelo login de todos os tipos de usuários,a requisição retorna um token que sera necessário para fazer todas as requisições abaixo,deve se atentar que cada tipo de usuário terá permissões diferentes,sendo Admin ou user.",
         "tags": ["Login"],
         "requestBody": {
           "content": {
@@ -77,7 +77,7 @@
     },
     "/consulta/all": {
       "get": {
-        "description": "Rota disponivel apenas para administradores,antes de fazer a requisição cliclar no cadeado no canto superior direito e inserir o token da requisição de POST/LOGIN,caso usuario sem permissão tente acessa-lá a requisição retorna status 401",
+        "description": "Rota disponível apenas para administradores,antes de fazer a requisição clicar no cadeado no canto superior direito e inserir o token da requisição de POST/LOGIN,caso usuário sem permissão tente acessa-lá a requisição retorna status 401.",
         "summary": "Busca todos as bases",
         "tags": ["admin"],
         "security": [
@@ -105,7 +105,7 @@
     },
     "/consulta/basea/{cpf}": {
       "get": {
-        "description": "Antes de fazer a requisição cliclar no cadeado no canto superior direito e inserir o token da requisição de POST/LOGIN,rota disponivel para todos os tipos de usuarios.",
+        "description": "Antes de fazer a requisição clicar no cadeado no canto superior direito e inserir o token da requisição de POST/LOGIN,rota disponível para todos os tipos de usuários.",
         "summary": "Base A",
         "tags": ["admin/user"],
         "security": [
@@ -148,7 +148,7 @@
     "/consulta/baseb/{cpf}": {
       "get": {
         "summary": "Base B",
-        "description": "Antes de fazer a requisição cliclar no cadeado no canto superior direito e inserir o token da requisição de POST/LOGIN,rota disponivel para todos os tipos de usuarios.",
+        "description": "Antes de fazer a requisição clicar no cadeado no canto superior direito e inserir o token da requisição de POST/LOGIN,rota disponível para todos os tipos de usuários.",
         "tags": ["admin/user"],
         "security": [
           {
@@ -189,7 +189,7 @@
     },
     "/consulta/baseC/{cpf}": {
       "get": {
-        "description": "Antes de fazer a requisição cliclar no cadeado no canto superior direito e inserir o token da requisição de POST/LOGIN,rota disponivel para todos os tipos de usuarios.",
+        "description": "Antes de fazer a requisição clicar no cadeado no canto superior direito e inserir o token da requisição de POST/LOGIN,rota disponível para todos os tipos de usuários.",
         "summary": "Base C",
         "tags": ["admin/user"],
         "security": [

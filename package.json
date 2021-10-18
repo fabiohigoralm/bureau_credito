@@ -1,16 +1,17 @@
 {
-  "name": "serasa-backend",
+  "name": "bureau-credito-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Api bureau de credito",
   "main": "index.js",
   "scripts": {
     "test": "mocha ./tests/**/*$NAME*.test.js --exit",
     "test:coverage": "nyc --include='src/**/*.js' npm run test",
     "dev": "nodemon src/api/server.js",
     "start": "node src/api/server.js",
-    "seed": "node src/database/seeds/base-seed.js"
+    "seed": "node src/database/seeds/base-seed.js",
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
   },
-  "author": "",
+  "author": "Fabio Higor de Almeida",
   "license": "ISC",
   "dependencies": {
     "@hapi/boom": "^9.1.4",

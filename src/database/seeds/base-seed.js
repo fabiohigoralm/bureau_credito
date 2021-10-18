@@ -413,8 +413,10 @@ const user_3 = new User({
   role: 'user',
 });
 
-user_3.save();
+user_3.save().then(() => { console.log('banco populado!'); }).then(() => {
+  process.exit();
+});
 
-// eslint-disable-next-line no-console
-console.log('banco populado!');
-process.exit();
+// // eslint-disable-next-line no-console
+// console.log('banco populado!');
+// process.exit();
